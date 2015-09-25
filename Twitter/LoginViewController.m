@@ -21,7 +21,8 @@
         if (user != nil) {
             //Modally present tweets view
             NSLog(@"Welcome to %@", user.name);
-            [self presentViewController:[[TweetsViewController alloc] init] animated:YES completion:nil];
+             UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:[[TweetsViewController alloc] init]];
+            [self presentViewController:nvc animated:YES completion:nil];
         } else {
             //present error view
         }

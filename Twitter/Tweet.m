@@ -17,8 +17,11 @@
         self.text = dictionary[@"text"];
         NSString *createdAtString = dictionary[@"created_at"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"EEE MMM d HH:mm:ss Z y";
+        formatter.dateFormat = @"EEE MMM d HH:mm:ss Z";
         self.createdAt = [formatter dateFromString:createdAtString];
+        self.imageURL =dictionary[@"user"][@"profile_image_url"];
+        self.name = dictionary[@"user"][@"name"];
+        self.twitterHandle = [NSString stringWithFormat:@"@%@", dictionary[@"user"][@"screen_name"]];
     }
     return self;
 }
