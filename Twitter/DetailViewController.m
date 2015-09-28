@@ -82,6 +82,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
+    self.tweetLabel.preferredMaxLayoutWidth = self.tweetLabel.frame.size.width;
+
     self.usernameLabel.text = _tweet.name;
     self.twitterHandleLabel.text = _tweet.twitterHandle;
     self.tweetLabel.text = _tweet.text;
