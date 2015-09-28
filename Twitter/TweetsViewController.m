@@ -7,6 +7,8 @@
 //
 
 #import "TweetsViewController.h"
+#import "DetailViewController.h"
+#import "ComposeViewController.h"
 #import "User.h"
 #import "Tweet.h"
 #import "TwitterClient.h"
@@ -15,6 +17,7 @@
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
     @property (weak, nonatomic) IBOutlet UITableView *tableView;
     @property (nonatomic, strong) NSArray *tweets;
+    @property (nonatomic, strong) UIRefreshControl *refreshControl;
 @end
 
 @implementation TweetsViewController
@@ -31,13 +34,15 @@
     [super viewDidLoad];
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
-    self.tableView.allowsSelection = NO; //todo need to implement detail view controller
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
     
     [self.tableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:@"TweetCell"];
     
     self.navigationController.navigationBar.barTintColor = [UIColor colorWithRed:85/255.0 green:172/255.0 blue:238/255.0 alpha:0];
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Logout" style:UIBarButtonItemStylePlain target:self action:@selector(onLogout)];
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(onLogout)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"New" style:UIBarButtonItemStylePlain target:self action:@selector(composeTweet)];
     self.navigationItem.title = @"Home";
 
     [self.navigationItem.leftBarButtonItem setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}forState:UIControlStateNormal];
@@ -58,7 +63,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return 19;
+    return 18;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -68,8 +73,32 @@
     return cell;
 }
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+    DetailViewController *dvc = [[DetailViewController alloc] init];
+    dvc.tweet = (Tweet *)(self.tweets[indexPath.row]);
+    [self.navigationController pushViewController:dvc animated:YES];
+}
+
 - (void)onLogout {
     [User logout];
+}
+
+- (void)composeTweet {
+    ComposeViewController *cvc = [[ComposeViewController alloc] init];
+    cvc.name = _user.name;
+    cvc.twitterHandle = _user.screenname;
+    cvc.imageURL = _user.profileImageUrl;
+    [self.navigationController pushViewController:cvc animated:YES];
+}
+
+- (void)onRefresh {
+    [[TwitterClient sharedInstance] homeTimelineWithParams:nil completion:^(NSArray *tweets, NSError *error) {
+        self.tweets = tweets;
+        [self.tableView reloadData];
+        [self.refreshControl endRefreshing];
+    }];
 }
 
 /*

@@ -15,13 +15,16 @@
     if (self) {
         self.user = [[User alloc] initWithDictionary:dictionary[@"user"]];
         self.text = dictionary[@"text"];
-        NSString *createdAtString = dictionary[@"created_at"];
         NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-        formatter.dateFormat = @"EEE MMM d HH:mm:ss Z";
-        self.createdAt = [formatter dateFromString:createdAtString];
+        formatter.dateFormat = @"EEE MMM d HH:mm:ss Z yyyy";
+        NSDate *createdAtDate =[formatter dateFromString:dictionary[@"created_at"]];
+        [formatter setDateStyle:NSDateFormatterShortStyle];
+        [formatter setTimeStyle:NSDateFormatterShortStyle];
+        self.createdAt = [formatter stringFromDate:createdAtDate];
         self.imageURL =dictionary[@"user"][@"profile_image_url"];
         self.name = dictionary[@"user"][@"name"];
         self.twitterHandle = [NSString stringWithFormat:@"@%@", dictionary[@"user"][@"screen_name"]];
+        self.tweetID = dictionary[@"id_str"];
     }
     return self;
 }

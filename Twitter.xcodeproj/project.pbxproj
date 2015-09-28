@@ -17,6 +17,11 @@
 		A10DE3801BACCF020015E129 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A10DE37E1BACCF020015E129 /* LoginViewController.m */; settings = {ASSET_TAGS = (); }; };
 		A10DE3811BACCF020015E129 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A10DE37F1BACCF020015E129 /* LoginViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		A10DE3841BACD05A0015E129 /* TwitterClient.m in Sources */ = {isa = PBXBuildFile; fileRef = A10DE3831BACD05A0015E129 /* TwitterClient.m */; settings = {ASSET_TAGS = (); }; };
+		A15BFA0F1BB5F8600057C59F /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A15BFA0D1BB5F8600057C59F /* DetailViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A15BFA101BB5F8600057C59F /* DetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15BFA0E1BB5F8600057C59F /* DetailViewController.xib */; settings = {ASSET_TAGS = (); }; };
+		A15BFA151BB62D200057C59F /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A15BFA141BB62D200057C59F /* Social.framework */; };
+		A15BFA191BB8A1EE0057C59F /* ComposeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A15BFA171BB8A1EE0057C59F /* ComposeViewController.m */; settings = {ASSET_TAGS = (); }; };
+		A15BFA1A1BB8A1EE0057C59F /* ComposeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15BFA181BB8A1EE0057C59F /* ComposeViewController.xib */; settings = {ASSET_TAGS = (); }; };
 		A1B096091BB3247F00D3D14A /* Tweet.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B096081BB3247F00D3D14A /* Tweet.m */; settings = {ASSET_TAGS = (); }; };
 		A1B0960C1BB3249400D3D14A /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0960B1BB3249400D3D14A /* User.m */; settings = {ASSET_TAGS = (); }; };
 		A1B096101BB3498B00D3D14A /* TweetsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A1B0960E1BB3498B00D3D14A /* TweetsViewController.m */; settings = {ASSET_TAGS = (); }; };
@@ -63,6 +68,13 @@
 		A10DE37F1BACCF020015E129 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		A10DE3821BACD05A0015E129 /* TwitterClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TwitterClient.h; sourceTree = "<group>"; };
 		A10DE3831BACD05A0015E129 /* TwitterClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TwitterClient.m; sourceTree = "<group>"; };
+		A15BFA0C1BB5F8600057C59F /* DetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailViewController.h; sourceTree = "<group>"; };
+		A15BFA0D1BB5F8600057C59F /* DetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailViewController.m; sourceTree = "<group>"; };
+		A15BFA0E1BB5F8600057C59F /* DetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DetailViewController.xib; sourceTree = "<group>"; };
+		A15BFA141BB62D200057C59F /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		A15BFA161BB8A1EE0057C59F /* ComposeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeViewController.h; sourceTree = "<group>"; };
+		A15BFA171BB8A1EE0057C59F /* ComposeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeViewController.m; sourceTree = "<group>"; };
+		A15BFA181BB8A1EE0057C59F /* ComposeViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeViewController.xib; sourceTree = "<group>"; };
 		A1B096071BB3247F00D3D14A /* Tweet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Tweet.h; sourceTree = "<group>"; };
 		A1B096081BB3247F00D3D14A /* Tweet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Tweet.m; sourceTree = "<group>"; };
 		A1B0960A1BB3249400D3D14A /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
@@ -81,6 +93,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A15BFA151BB62D200057C59F /* Social.framework in Frameworks */,
 				859BE6A2B4B0E10BB7E28571 /* libPods-Twitter.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -152,6 +165,12 @@
 				A1B0960D1BB3498B00D3D14A /* TweetsViewController.h */,
 				A1B0960E1BB3498B00D3D14A /* TweetsViewController.m */,
 				A1B0960F1BB3498B00D3D14A /* TweetsViewController.xib */,
+				A15BFA0C1BB5F8600057C59F /* DetailViewController.h */,
+				A15BFA0D1BB5F8600057C59F /* DetailViewController.m */,
+				A15BFA0E1BB5F8600057C59F /* DetailViewController.xib */,
+				A15BFA161BB8A1EE0057C59F /* ComposeViewController.h */,
+				A15BFA171BB8A1EE0057C59F /* ComposeViewController.m */,
+				A15BFA181BB8A1EE0057C59F /* ComposeViewController.xib */,
 			);
 			path = Twitter;
 			sourceTree = "<group>";
@@ -206,6 +225,7 @@
 		DF93DCF3B7FE6B96C3D8899D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A15BFA141BB62D200057C59F /* Social.framework */,
 				8E53D74BB4AFDCC4B47C2A2A /* libPods-Twitter.a */,
 			);
 			name = Frameworks;
@@ -317,8 +337,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A1B096111BB3498B00D3D14A /* TweetsViewController.xib in Resources */,
+				A15BFA101BB5F8600057C59F /* DetailViewController.xib in Resources */,
 				A1B0961C1BB3609000D3D14A /* TweetCell.xib in Resources */,
 				A10DE3571BACCC890015E129 /* LaunchScreen.storyboard in Resources */,
+				A15BFA1A1BB8A1EE0057C59F /* ComposeViewController.xib in Resources */,
 				A10DE3541BACCC890015E129 /* Assets.xcassets in Resources */,
 				A10DE3811BACCF020015E129 /* LoginViewController.xib in Resources */,
 			);
@@ -380,6 +402,8 @@
 			files = (
 				A10DE3841BACD05A0015E129 /* TwitterClient.m in Sources */,
 				A10DE34C1BACCC890015E129 /* AppDelegate.m in Sources */,
+				A15BFA0F1BB5F8600057C59F /* DetailViewController.m in Sources */,
+				A15BFA191BB8A1EE0057C59F /* ComposeViewController.m in Sources */,
 				A1B0960C1BB3249400D3D14A /* User.m in Sources */,
 				A1B096091BB3247F00D3D14A /* Tweet.m in Sources */,
 				A10DE3491BACCC890015E129 /* main.m in Sources */,

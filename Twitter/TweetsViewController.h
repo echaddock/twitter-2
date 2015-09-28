@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "User.h"
 
 @interface TweetsViewController : UIViewController
+
+@property User* user;
 
 @end

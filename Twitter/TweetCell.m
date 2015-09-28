@@ -41,9 +41,6 @@
         self.nameLabel.text = _tweet.name;
         self.twitterHandleLabel.text = _tweet.twitterHandle;
         self.createAtLabel.text = _tweet.createdAt;
-    } else {
-        self.tweetLabel.text = @"the best thing ever happened today. I made a twitter app but the data won't show up. and now i have to make fake tweets";
-        [self.tweetImage setImageWithURL:[NSURL URLWithString:@"https://pbs.twimg.com/profile_images/613035653203300352/Bz94DZo-_bigger.jpg"]];
     }
 
 }

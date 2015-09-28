@@ -17,6 +17,7 @@
 @property (nonatomic, strong) NSString *imageURL;
 @property (nonatomic, strong) NSString *twitterHandle;
 @property (nonatomic, strong) NSString *name;
+@property (nonatomic, strong) NSString *tweetID;
 
 - (id)initWithDictionary: (NSDictionary *)dictionary;
 
