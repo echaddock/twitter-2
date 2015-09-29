@@ -8,9 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "User.h"
+#import "SWRevealViewController.h"
 
 @interface TweetsViewController : UIViewController
 
 @property User* user;
+@property SWRevealViewController *revealViewController;
 
 @end

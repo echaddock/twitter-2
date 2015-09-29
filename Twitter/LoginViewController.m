@@ -9,6 +9,8 @@
 #import "LoginViewController.h"
 #import "TwitterClient.h"
 #import "TweetsViewController.h"
+#import "MenuViewController.h"
+#import "SWRevealViewController.h"
 
 @interface LoginViewController ()
 
@@ -21,10 +23,16 @@
         if (user != nil) {
             //Modally present tweets view
             NSLog(@"Welcome to %@", user.name);
+            SWRevealViewController *swvc;
             TweetsViewController *tvc = [[TweetsViewController alloc] init];
             tvc.user = user;
-             UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
-            [self presentViewController:nvc animated:YES completion:nil];
+            tvc.revealViewController = swvc;
+
+            UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
+            
+            swvc = [[SWRevealViewController alloc] initWithRearViewController:[[MenuViewController alloc] init] frontViewController:nvc];
+            
+            [self presentViewController:swvc animated:YES completion:nil];
         } else {
             //present error view
         }

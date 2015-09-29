@@ -13,11 +13,14 @@
 #import "Tweet.h"
 #import "TwitterClient.h"
 #import "TweetCell.h"
+#import "SWRevealViewController.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
     @property (weak, nonatomic) IBOutlet UITableView *tableView;
     @property (nonatomic, strong) NSArray *tweets;
     @property (nonatomic, strong) UIRefreshControl *refreshControl;
+@property (nonatomic, assign) BOOL showingLeftPanel;
+    - (void)onPan:(UIPanGestureRecognizer *)panGestureRecognizer;
 @end
 
 @implementation TweetsViewController
@@ -54,6 +57,10 @@
         self.tweets = tweets;
         [self.tableView reloadData];
     }];
+    
+    //UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
+    SWRevealViewController *svc = (SWRevealViewController *)self.navigationController.parentViewController;
+    [self.view addGestureRecognizer:svc.panGestureRecognizer];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -100,6 +107,11 @@
         [self.refreshControl endRefreshing];
     }];
 }
+
+- (void)onPan:(UIPanGestureRecognizer *)sender {
+    //[self.parentViewController pushFrontViewController:self.navigationController animated:YES];
+    [self.revealViewController revealToggle:@"menu"];
+ }
 
 /*
 #pragma mark - Navigation
