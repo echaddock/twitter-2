@@ -14,8 +14,9 @@
 #import "TweetsViewController.h"
 #import "SWRevealViewController.h"
 #import "MenuViewController.h"
+#import "ProfileViewController.h"
 
-@interface AppDelegate ()
+@interface AppDelegate () <MenuViewControllerDelegate, TweetsViewControllerDelegate>
 
 @end
 
@@ -35,8 +36,12 @@
         TweetsViewController *tvc = [[TweetsViewController alloc] init];
         tvc.user = user;
         tvc.revealViewController = swvc;
+        tvc.delegate = self;
         
-        swvc = [[SWRevealViewController alloc] initWithRearViewController:[[MenuViewController alloc] init] frontViewController:[[UINavigationController alloc] initWithRootViewController:tvc]];
+        MenuViewController *mvc = [[MenuViewController alloc] init];
+        mvc.delegate = self;
+        
+        swvc = [[SWRevealViewController alloc] initWithRearViewController:mvc frontViewController:[[UINavigationController alloc] initWithRootViewController:tvc]];
         
         self.window.rootViewController = swvc;
     } else {
@@ -46,6 +51,39 @@
     
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+-(void)menuViewControllerDidFinishWithCategoryId:(NSInteger)categoryId {
+    SWRevealViewController *swvc;
+    MenuViewController *mvc = [[MenuViewController alloc] init];
+    mvc.delegate = self;
+    
+    if(categoryId == 0) {
+        TweetsViewController* tvc = [[TweetsViewController alloc] init];
+        tvc.user = [User currentUser];
+        tvc.revealViewController = swvc;
+        swvc = [[SWRevealViewController alloc] initWithRearViewController:mvc frontViewController:[[UINavigationController alloc] initWithRootViewController:tvc]];
+    } else if(categoryId == 1) {
+        ProfileViewController* pvc = [[ProfileViewController alloc] init];
+        pvc.user = [User currentUser];
+        pvc.revealViewController = swvc;
+        swvc = [[SWRevealViewController alloc] initWithRearViewController:mvc frontViewController:[[UINavigationController alloc] initWithRootViewController:pvc]];
+    }
+    
+    self.window.rootViewController = swvc;
+}
+
+- (void)tweetsViewControllerDidFinishWithUser:(User *)user {
+    SWRevealViewController *swvc;
+    MenuViewController *mvc = [[MenuViewController alloc] init];
+    mvc.delegate = self;
+    
+    ProfileViewController* pvc = [[ProfileViewController alloc] init];
+    pvc.user = user;
+    pvc.revealViewController = swvc;
+    swvc = [[SWRevealViewController alloc] initWithRearViewController:mvc frontViewController:[[UINavigationController alloc] initWithRootViewController:pvc]];
+    
+    self.window.rootViewController = swvc;
 }
 
 - (void)userDidLogout {

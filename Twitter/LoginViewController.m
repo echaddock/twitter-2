@@ -11,6 +11,7 @@
 #import "TweetsViewController.h"
 #import "MenuViewController.h"
 #import "SWRevealViewController.h"
+#import "ProfileViewController.h"
 
 @interface LoginViewController ()
 
@@ -24,13 +25,17 @@
             //Modally present tweets view
             NSLog(@"Welcome to %@", user.name);
             SWRevealViewController *swvc;
+            MenuViewController *mvc = [[MenuViewController alloc] init];
+            mvc.delegate = (id<MenuViewControllerDelegate>)[UIApplication sharedApplication].delegate;
+            
             TweetsViewController *tvc = [[TweetsViewController alloc] init];
             tvc.user = user;
             tvc.revealViewController = swvc;
+            tvc.delegate = (id<TweetsViewControllerDelegate>)[UIApplication sharedApplication].delegate;
 
             UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
             
-            swvc = [[SWRevealViewController alloc] initWithRearViewController:[[MenuViewController alloc] init] frontViewController:nvc];
+            swvc = [[SWRevealViewController alloc] initWithRearViewController:mvc frontViewController:nvc];
             
             [self presentViewController:swvc animated:YES completion:nil];
         } else {

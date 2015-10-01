@@ -58,7 +58,6 @@
         [self.tableView reloadData];
     }];
     
-    //UIPanGestureRecognizer *panGestureRecognizer = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(onPan:)];
     SWRevealViewController *svc = (SWRevealViewController *)self.navigationController.parentViewController;
     [self.view addGestureRecognizer:svc.panGestureRecognizer];
 }
@@ -109,7 +108,6 @@
 }
 
 - (void)onPan:(UIPanGestureRecognizer *)sender {
-    //[self.parentViewController pushFrontViewController:self.navigationController animated:YES];
     [self.revealViewController revealToggle:@"menu"];
  }
 

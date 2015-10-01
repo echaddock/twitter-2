@@ -10,9 +10,19 @@
 #import "User.h"
 #import "SWRevealViewController.h"
 
+@protocol TweetsViewControllerDelegate;
+
 @interface TweetsViewController : UIViewController
 
 @property User* user;
 @property SWRevealViewController *revealViewController;
+@property (nonatomic, weak) id <TweetsViewControllerDelegate> delegate;
+
+
+@end
+
+@protocol TweetsViewControllerDelegate
+
+-(void)tweetsViewControllerDidFinishWithUser:(User *)user;
 
 @end
