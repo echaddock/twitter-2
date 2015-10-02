@@ -8,6 +8,8 @@
 
 #import "TweetCell.h"
 #import "UIImageView+AFNetworking.h"
+#import "ProfileViewController.h"
+#import "TweetsViewController.h"
 
 @interface TweetCell ()
 @property (weak, nonatomic) IBOutlet UILabel *createAtLabel;
@@ -15,13 +17,22 @@
 @property (weak, nonatomic) IBOutlet UILabel *tweetLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *tweetImage;
 @property (weak, nonatomic) IBOutlet UILabel *nameLabel;
+@property (weak, nonatomic) User *user;
 @end
 
 @implementation TweetCell
 
 - (void)awakeFromNib {
-    // Initialization code
+    [self.tweetImage addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(onTap:)]];
 }
+
+- (void)onTap:(UITapGestureRecognizer *)sender {
+    ProfileViewController *pvc = [[ProfileViewController alloc] init];
+    pvc.user = _user;
+    TweetsViewController *tvc = self.delegate;
+    [tvc.navigationController pushViewController:pvc animated:YES];
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];
@@ -32,7 +43,6 @@
 - (void)setTweet:(Tweet *)tweet
 {
     if(tweet) {
-    //if(NO) {
         _tweet = tweet;
         if(_tweet.imageURL) {
             [self.tweetImage setImageWithURL:[NSURL URLWithString:_tweet.imageURL]];
@@ -41,8 +51,8 @@
         self.nameLabel.text = _tweet.name;
         self.twitterHandleLabel.text = _tweet.twitterHandle;
         self.createAtLabel.text = _tweet.createdAt;
+        self.user = _tweet.user;
     }
-
 }
 
 - (void)layoutSubviews {

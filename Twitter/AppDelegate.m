@@ -15,8 +15,10 @@
 #import "SWRevealViewController.h"
 #import "MenuViewController.h"
 #import "ProfileViewController.h"
+#import "MentionsViewController.h"
+#import "TweetCell.h"
 
-@interface AppDelegate () <MenuViewControllerDelegate, TweetsViewControllerDelegate>
+@interface AppDelegate () <MenuViewControllerDelegate>
 
 @end
 
@@ -36,7 +38,6 @@
         TweetsViewController *tvc = [[TweetsViewController alloc] init];
         tvc.user = user;
         tvc.revealViewController = swvc;
-        tvc.delegate = self;
         
         MenuViewController *mvc = [[MenuViewController alloc] init];
         mvc.delegate = self;
@@ -68,20 +69,11 @@
         pvc.user = [User currentUser];
         pvc.revealViewController = swvc;
         swvc = [[SWRevealViewController alloc] initWithRearViewController:mvc frontViewController:[[UINavigationController alloc] initWithRootViewController:pvc]];
+    } else {
+        MentionsViewController *mentions = [[MentionsViewController alloc] init];
+        mentions.revealViewController = swvc;
+        swvc = [[SWRevealViewController alloc] initWithRearViewController:mvc frontViewController:[[UINavigationController alloc] initWithRootViewController:mentions]];
     }
-    
-    self.window.rootViewController = swvc;
-}
-
-- (void)tweetsViewControllerDidFinishWithUser:(User *)user {
-    SWRevealViewController *swvc;
-    MenuViewController *mvc = [[MenuViewController alloc] init];
-    mvc.delegate = self;
-    
-    ProfileViewController* pvc = [[ProfileViewController alloc] init];
-    pvc.user = user;
-    pvc.revealViewController = swvc;
-    swvc = [[SWRevealViewController alloc] initWithRearViewController:mvc frontViewController:[[UINavigationController alloc] initWithRootViewController:pvc]];
     
     self.window.rootViewController = swvc;
 }

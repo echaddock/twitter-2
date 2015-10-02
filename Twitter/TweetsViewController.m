@@ -14,12 +14,13 @@
 #import "TwitterClient.h"
 #import "TweetCell.h"
 #import "SWRevealViewController.h"
+#import "ProfileViewController.h"
 
 @interface TweetsViewController () <UITableViewDataSource, UITableViewDelegate>
     @property (weak, nonatomic) IBOutlet UITableView *tableView;
     @property (nonatomic, strong) NSArray *tweets;
     @property (nonatomic, strong) UIRefreshControl *refreshControl;
-@property (nonatomic, assign) BOOL showingLeftPanel;
+    @property (nonatomic, assign) BOOL showingLeftPanel;
     - (void)onPan:(UIPanGestureRecognizer *)panGestureRecognizer;
 @end
 
@@ -58,6 +59,9 @@
         [self.tableView reloadData];
     }];
     
+}
+
+- (void)viewDidAppear:(BOOL)animated {
     SWRevealViewController *svc = (SWRevealViewController *)self.navigationController.parentViewController;
     [self.view addGestureRecognizer:svc.panGestureRecognizer];
 }
@@ -75,16 +79,18 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"TweetCell"];
+    cell.delegate = self;
     [cell setTweet:(Tweet *)(self.tweets[indexPath.row])];
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
-    DetailViewController *dvc = [[DetailViewController alloc] init];
-    dvc.tweet = (Tweet *)(self.tweets[indexPath.row]);
-    [self.navigationController pushViewController:dvc animated:YES];
+     [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+     DetailViewController *dvc = [[DetailViewController alloc] init];
+     dvc.tweet = (Tweet *)(self.tweets[indexPath.row]);
+     [self.navigationController pushViewController:dvc animated:YES];
+    
 }
 
 - (void)onLogout {

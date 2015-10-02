@@ -15,6 +15,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" translatesAutoresizingMaskIntoConstraints="NO" id="xRX-Fp-wyy">
                         <rect key="frame" x="15" y="8" width="40" height="40"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstAttribute="width" constant="40" id="uIM-QJ-HMG"/>
                             <constraint firstAttribute="height" constant="40" id="unE-NJ-LfG"/>
@@ -85,7 +86,7 @@
                 <outlet property="tweetLabel" destination="d2h-Ay-uDL" id="G3R-x9-OZb"/>
                 <outlet property="twitterHandleLabel" destination="4xx-ba-Owg" id="z8Z-ro-0KP"/>
             </connections>
-            <point key="canvasLocation" x="-88.5" y="319.5"/>
+            <point key="canvasLocation" x="-348.5" y="94.5"/>
         </tableViewCell>
     </objects>
 </document>

@@ -147,7 +147,7 @@
                 <constraint firstItem="EZf-Xi-4UK" firstAttribute="top" secondItem="wlc-5O-Zws" secondAttribute="bottom" constant="3.5" id="yxg-oC-OzX"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-            <point key="canvasLocation" x="498" y="265"/>
+            <point key="canvasLocation" x="493" y="73"/>
         </view>
     </objects>
 </document>

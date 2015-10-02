@@ -31,7 +31,6 @@
             TweetsViewController *tvc = [[TweetsViewController alloc] init];
             tvc.user = user;
             tvc.revealViewController = swvc;
-            tvc.delegate = (id<TweetsViewControllerDelegate>)[UIApplication sharedApplication].delegate;
 
             UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:tvc];
             
